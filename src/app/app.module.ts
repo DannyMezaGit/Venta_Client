@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { HomeComponent } from './home/home.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ClienteComponent } from './cliente/cliente.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-
+    MatTableModule,
 
     HttpClientModule
   ],
