@@ -9,12 +9,20 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { HomeComponent } from './home/home.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { MatTableModule } from "@angular/material/table";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { DialogClienteComponent } from './cliente/dialog-cliente/dialog-cliente.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ClienteComponent
+    ClienteComponent,
+    DialogClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -22,8 +30,15 @@ import { MatTableModule } from "@angular/material/table";
     BrowserAnimationsModule,
     MatSidenavModule,
     MatTableModule,
+    MatDialogModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSnackBarModule,
+    FormsModule,
+    
 
-    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
