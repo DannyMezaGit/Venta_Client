@@ -19,22 +19,30 @@ export class ApiAuthService {
   url: string = 'https://localhost:44336/api/User/login';
   private usuarioSubject: BehaviorSubject<Usuario>;
 
-  constructor(private _http: HttpClient ) { }
+  public get usuarioData(): Usuario {
+    return this.usuarioSubject.value
+  }
 
+  constructor(private _http: HttpClient ) { 
+    this.usuarioSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('usuario')))
+  }
 
   login(email: string, password: string): Observable<Response> {
-    return this._http.post<Response>(this.url, {email, password}, httpOptions);
+    return this._http.post<Response>(this.url, {email, password}, httpOptions).pipe(
+      map(res => {
+        if (res.exito === 1) {
+          const usuario: Usuario = res.data;
+          localStorage.setItem('usuario', JSON.stringify(usuario));
+          this.usuarioSubject.next(usuario);
+        }
+        return res;
+      })
+    );
   }
-  
-  // login(email: string, password: string): Observable<Response> {
-  //   return this._http.post<Response>(this.url, {email, password}, httpOptions).pipe(
-  //     map(res => {
-  //       if (res.exito === 1) {
-          
-  //       }
-  //       return res;
-  //     });
-  //   );
-  // }
+
+  logout(){
+    localStorage.removeItem('usuario');
+    this.usuarioSubject.next(null);
+  }
 
 }
