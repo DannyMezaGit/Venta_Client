@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiAuthService } from '../services/api-auth.service';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -10,12 +10,16 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+  public loginForm = this.formBuilder.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+
   });
+
   constructor(public apiAuth: ApiAuthService,
-              private router: Router
+              private router: Router,
+              private formBuilder: FormBuilder,
+
     ) {
       //   if(this.apiAuth.usuarioData) {
       //   this.router.navigate(['/']);
