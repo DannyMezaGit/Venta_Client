@@ -4,6 +4,8 @@ import { Response as response } from '../models/Response';
 import { DialogClienteComponent } from "./dialog-cliente/dialog-cliente.component";
 import { MatDialog } from "@angular/material/dialog";
 import { Cliente } from './models/cliente';
+import { DialogDeleteComponent } from '../common/delete/dialog-delete/dialog-delete.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cliente',
@@ -15,8 +17,8 @@ export class ClienteComponent implements OnInit {
   public lst: any[];
   public columnas: string[] = ['id', 'nombre', 'actions'];
   constructor(private apiCliente: ApiclienteService,
-              private dialog: MatDialog,
-
+              public dialog: MatDialog,
+              public snackBar: MatSnackBar
               ) {  }
 
   ngOnInit(): void {
@@ -46,6 +48,25 @@ export class ClienteComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(res => {
         this.getClientes();
+      })
+    }
+
+    delete(cliente: Cliente){
+      const dialogRef = this.dialog.open(DialogDeleteComponent, {
+        width: '300'
+      });
+
+      dialogRef.afterClosed().subscribe(res => {
+        if(res){
+          this.apiCliente.deleteCliente(cliente.id).subscribe(res => {
+            if(res.exito === 1){
+              this.snackBar.open("Cliente eliminado con éxito", '', {
+                duration: 2000
+              });
+              this.getClientes();
+            }
+          })
+        }
       })
     }
 

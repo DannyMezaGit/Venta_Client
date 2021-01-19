@@ -15,6 +15,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { DialogClienteComponent } from './cliente/dialog-cliente/dialog-cliente.component';
 import { FormsModule } from '@angular/forms';
+import { DialogDeleteComponent } from './cliente/common/delete/dialog-delete/dialog-delete.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     ClienteComponent,
-    DialogClienteComponent
+    DialogClienteComponent,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,
