@@ -3,6 +3,7 @@ import { ApiclienteService } from '../services/apicliente.service';
 import { Response as response } from '../models/Response';
 import { DialogClienteComponent } from "./dialog-cliente/dialog-cliente.component";
 import { MatDialog } from "@angular/material/dialog";
+import { Cliente } from './models/cliente';
 
 @Component({
   selector: 'app-cliente',
@@ -12,7 +13,7 @@ import { MatDialog } from "@angular/material/dialog";
 export class ClienteComponent implements OnInit {
 
   public lst: any[];
-  public columnas: string[] = ['id', 'nombre'];
+  public columnas: string[] = ['id', 'nombre', 'actions'];
   constructor(private apiCliente: ApiclienteService,
               private dialog: MatDialog,
 
@@ -37,5 +38,16 @@ export class ClienteComponent implements OnInit {
         this.getClientes();
       })
     }
+    openEdit(cliente: Cliente){
+      const dialogRef = this.dialog.open(DialogClienteComponent, {
+        width: '300',
+        data: cliente
+      });
+
+      dialogRef.afterClosed().subscribe(res => {
+        this.getClientes();
+      })
+    }
+
 
 }
