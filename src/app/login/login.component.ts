@@ -10,26 +10,24 @@ import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms"
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm = this.formBuilder.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-
-  });
-
+  loginForm: FormGroup;
   constructor(public apiAuth: ApiAuthService,
               private router: Router,
               private formBuilder: FormBuilder,
-
+    
     ) {
       //   if(this.apiAuth.usuarioData) {
-      //   this.router.navigate(['/']);
-      // }
-
-     }
-
-    
+        //   this.router.navigate(['/']);
+        // }
+        
+      }
+      
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', {validators: [Validators.required]}],
+      password: ['', {validators: [Validators.required]}],
+    });
   }
 
   login(){

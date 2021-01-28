@@ -3,6 +3,7 @@
         <a [routerLink]="['/home']">Inicio</a>
         <br>
         <a [routerLink]="['/cliente']">Cliente</a>
+        <a (click) = "logout()" *ngIf="usuario">Cerrar Sesión</a>
     </mat-drawer>
     <div>
         <button (click)="drawer.toggle();">Mostrar/Ocultar</button>
