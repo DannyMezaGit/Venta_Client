@@ -19,6 +19,8 @@ import { MatCardModule } from '@angular/material/card';
 import { DialogDeleteComponent } from './common/delete/dialog-delete/dialog-delete.component';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from './security/jwt.interceptor';
+import { VentaComponent } from './venta/venta.component';
+import { DialogVentaComponent } from './venta/dialog/dialog-venta/dialog-venta.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { JwtInterceptor } from './security/jwt.interceptor';
     ClienteComponent,
     DialogClienteComponent,
     DialogDeleteComponent,
+    DialogVentaComponent,
     LoginComponent,
+    VentaComponent,
 
   ],
   imports: [

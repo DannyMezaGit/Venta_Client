@@ -1,8 +1,9 @@
-<mat-drawer-container>
+<mat-drawer-container class="global-content">
     <mat-drawer #drawer mode="side">
         <a [routerLink]="['/home']">Inicio</a>
         <br>
         <a [routerLink]="['/cliente']">Cliente</a>
+        <a [routerLink]="['/venta']">Venta</a>
         <a (click) = "logout()" *ngIf="usuario">Cerrar Sesión</a>
     </mat-drawer>
     <div>
